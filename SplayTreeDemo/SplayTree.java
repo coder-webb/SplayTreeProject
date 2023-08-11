@@ -7,7 +7,7 @@ public class SplayTree {
     Node root;
 
     // Methods
-    //rotateRight (rotate right once)
+    //rotateRight (rotate right once) - zig rotation
     private Node rotateRight(Node node)
     {
         Node y = node.left;
@@ -15,7 +15,7 @@ public class SplayTree {
         y.right = node;
         return y;
     }
-    //rotateLeft (rotate left once)
+    //rotateLeft (rotate left once) - zag rotation
     private Node rotateLeft(Node node)
     {
         Node y = node.right;
@@ -28,6 +28,7 @@ public class SplayTree {
     {
         root = splay(root, node); // splay input node
     }
+    // recursively find subtree node to splay is in and reorganize tree
     private Node splay(Node root, Node nodeToSplay)
     {        
         if (root == nodeToSplay) // If root is the node to splay
@@ -39,16 +40,16 @@ public class SplayTree {
                 return root; // do not splay
 
             if (root.left.value > nodeToSplay.value) // if root's left node has a greater value that the splaying node
-            {
-                root.left.left = splay(root.left.left, nodeToSplay); // restructure root.left.left so it fits under the splaying node
+            {   // zigzig rotation
+                root.left.left = splay(root.left.left, nodeToSplay); 
                 root = rotateRight(root); // rotate the current subtree to the right
             }
             else if (root.left.value < nodeToSplay.value) // if current subtree's left node has a lesser value than the splaying node
-            {
+            {   // zigzag rotation
                 root.left.right = splay(root.left.right, nodeToSplay); // restructure root.left.right so it fits under the splaying node
                 
-                if (root.left.right != null) // if root.left.right is a valid node
-                    root.left = rotateLeft(root.left); // rotate current subtree's left node to the left
+                if (root.left.right != null) // check if root.left.right is a valid node
+                    root.left = rotateLeft(root.left); // zag rotation on root.left
             }
             // if the current subtree has no left node, rotate the tree to the right
             return (root.left == null) ? root : rotateRight(root);
