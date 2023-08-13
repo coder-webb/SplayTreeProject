@@ -33,10 +33,10 @@ public class Main {
             }
             System.out.println();
         }
-        tree.splay(a);
+        tree.splayNode(a);
 
        
-        tree.splay(h);
+        tree.splayNode(h);
 
 
     }
