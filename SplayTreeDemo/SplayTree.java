@@ -1,12 +1,22 @@
+// Codey Webb
+// Wh Lane
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+// Splay trees run o(log n) amortized and o(n) worst case
+/* Amortized analysis is a method for analyzing a given algorithm's complexity, 
+or how much of a resource, especially time or memory, it takes to execute. The
+motivation for amortized analysis is that looking at the worst-case run time 
+can be too pessimistic. Instead, amortized analysis averages the running times of 
+operations in a sequence over that sequence.
+*/
 public class SplayTree {
     // Fields
     Node root;
 
     // Methods
-    //rotateRight (rotate right once) - zig rotation -- O(1)
+    // rotateRight (rotate right once) - zig rotation -- O(1)
     private Node rotateRight(Node node)
     {
         Node y = node.left;
@@ -14,7 +24,7 @@ public class SplayTree {
         y.right = node;
         return y;
     }
-    //rotateLeft (rotate left once) - zag rotation -- O(1)
+    // rotateLeft (rotate left once) - zag rotation -- O(1)
     private Node rotateLeft(Node node)
     {
         Node y = node.right;
@@ -72,7 +82,7 @@ public class SplayTree {
             return (root.right == null) ? root : rotateLeft(root);
         }
     }
-    //insertNode, overload to create a node with value  -- O(log n)
+    // insertNode, overload to create a node with value  -- O(log n)
     public void splayValue(int value)
     {
         root = splayValue(root, value); // splay input node
@@ -197,7 +207,7 @@ public class SplayTree {
             }
         }
     }
-    // Delete a node with a value -- O(log n)
+    // delete a node with a value -- O(log n)
     public void deleteValue(int value)
     {
         // splay value
@@ -219,7 +229,7 @@ public class SplayTree {
         // left tree root.right = right tree root
         root.right = rootRightChild;
     }
-    // Find highest value of a tree -- O(n)
+    // find highest value of a tree -- O(n)
     private Node Max(Node root)
     {
         Node finger = root;
@@ -231,7 +241,7 @@ public class SplayTree {
         //finger now points at right most node
         return finger; // return that node
     }
-    // Perform a breadth first traversal to show current nodes O(n)
+    // perform a breadth first traversal to build an ArrayList of LinkedLists of nodes at each level of depth -- O(n)
     public ArrayList<LinkedList<Node>> breadthFirstTraversal()
     {
         // Create an array list of linked lists to hold the results
