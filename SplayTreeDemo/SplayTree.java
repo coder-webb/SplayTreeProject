@@ -4,12 +4,13 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-// Splay trees run o(log n) amortized and o(n) worst case
-/* Amortized analysis is a method for analyzing a given algorithm's complexity, 
-or how much of a resource, especially time or memory, it takes to execute. The
-motivation for amortized analysis is that looking at the worst-case run time 
-can be too pessimistic. Instead, amortized analysis averages the running times of 
-operations in a sequence over that sequence.
+//  Splay trees run o(log n) amortized and o(n) worst case
+/* 
+    Amortized analysis is a method for analyzing a given algorithm's complexity, 
+    or how much of a resource, especially time or memory, it takes to execute. The
+    motivation for amortized analysis is that looking at the worst-case run time 
+    can be too pessimistic. Instead, amortized analysis averages the running times of 
+    operations in a sequence over that sequence.
 */
 public class SplayTree {
     // Fields
@@ -229,7 +230,7 @@ public class SplayTree {
         // left tree root.right = right tree root
         root.right = rootRightChild;
     }
-    // find highest value of a tree -- O(n)
+    // find highest value of a tree -- O(log n)
     private Node Max(Node root)
     {
         Node finger = root;
