@@ -6,7 +6,7 @@ public class SplayTree {
     Node root;
 
     // Methods
-    //rotateRight (rotate right once) - zig rotation
+    //rotateRight (rotate right once) - zig rotation -- O(1)
     private Node rotateRight(Node node)
     {
         Node y = node.left;
@@ -14,7 +14,7 @@ public class SplayTree {
         y.right = node;
         return y;
     }
-    //rotateLeft (rotate left once) - zag rotation
+    //rotateLeft (rotate left once) - zag rotation -- O(1)
     private Node rotateLeft(Node node)
     {
         Node y = node.right;
@@ -22,12 +22,12 @@ public class SplayTree {
         y.left = node;
         return y;
     }
-    // splay (perform rotations until input node is the root of the tree)
+    // splay (perform rotations until input node is the root of the tree) -- O(log n)
     public void splayNode(Node node)
     {
         root = splayNode(root, node); // splay input node
     }
-    // recursively find subtree node to splay is in and reorganize tree
+    // recursively find subtree node to splay is in and reorganize tree -- O(log n)
     private Node splayNode(Node root, Node nodeToSplay)
     {        
         if (root == nodeToSplay) // If root is the node to splay
@@ -72,12 +72,12 @@ public class SplayTree {
             return (root.right == null) ? root : rotateLeft(root);
         }
     }
-    //insertNode, overload to create a node with value
+    //insertNode, overload to create a node with value  -- O(log n)
     public void splayValue(int value)
     {
         root = splayValue(root, value); // splay input node
     }
-    // recursively find subtree node to splay is in and reorganize tree
+    // recursively find subtree node to splay is in and reorganize tree  -- O(log n)
     private Node splayValue(Node root, int valueToSplay)
     {        
         if (root.value == valueToSplay) // If root is the node to splay
@@ -122,7 +122,7 @@ public class SplayTree {
             return (root.right == null) ? root : rotateLeft(root);
         }
     }
-    // add a new node to the tree and move it to the root
+    // add a new node to the tree and move it to the root -- O(log n)
     public void insertNode(Node node)
     {
         if (root == null) // if there is no root
@@ -159,7 +159,7 @@ public class SplayTree {
             }
         }
     }
-    // add a new node to the tree using a value and move it to the root
+    // add a new node to the tree using a value and move it to the root -- O(log n)
     public void insertValue(int value)
     {
         Node newNode = new Node(value);
@@ -197,8 +197,8 @@ public class SplayTree {
             }
         }
     }
-    // Delete a node with a value
-    public void deleteValue(int value) throws Exception
+    // Delete a node with a value -- O(log n)
+    public void deleteValue(int value)
     {
         // splay value
         splayValue(root, value);
@@ -219,8 +219,8 @@ public class SplayTree {
         // left tree root.right = right tree root
         root.right = rootRightChild;
     }
-    // Find highest value of a tree
-    private Node Max(Node root) //running time O(n)
+    // Find highest value of a tree -- O(n)
+    private Node Max(Node root)
     {
         Node finger = root;
         while(finger.right != null)
@@ -231,9 +231,9 @@ public class SplayTree {
         //finger now points at right most node
         return finger; // return that node
     }
-    // Perform a breadth first traversal to show current nodes
-    public ArrayList<LinkedList<Node>> breadthFirstTraversal() { //Running time O(n)
-        
+    // Perform a breadth first traversal to show current nodes O(n)
+    public ArrayList<LinkedList<Node>> breadthFirstTraversal()
+    {
         // Create an array list of linked lists to hold the results
         ArrayList<LinkedList<Node>> bfsResults = new ArrayList<LinkedList<Node>>();
 
