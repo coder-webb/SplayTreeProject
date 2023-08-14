@@ -1,3 +1,6 @@
+// Codey Webb
+// Wh Lane
+
 public class Node {
     // Fields
     int value;
